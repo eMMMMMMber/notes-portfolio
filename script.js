@@ -813,6 +813,7 @@ function openMail(id) {
   $("#mail-star-btn").classList.toggle("active", !!mail.starred);
 
   mailMainEl.classList.add("detail-open");
+  $("#mail-detail-pane").scrollTop = 0;
 }
 
 $("#mail-back-btn").addEventListener("click", () => {
