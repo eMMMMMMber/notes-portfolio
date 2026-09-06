@@ -525,9 +525,9 @@ function openNote(id) {
       imagesHtml = `<div class="${gridClass}">${images.map(photoBtn).join("")}</div>`;
     }
     content.insertAdjacentHTML("beforeend", imagesHtml);
-    content
-      .querySelectorAll(".note-photo")
-      .forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src)));
+    const notePhotoBtns = content.querySelectorAll(".note-photo");
+    const noteGallery = Array.from(notePhotoBtns).map((btn) => btn.dataset.src);
+    notePhotoBtns.forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src, noteGallery)));
   }
 
   const poems = note.poems || [];
@@ -802,9 +802,9 @@ function openMail(id) {
   }
 
   $("#mail-detail-content").innerHTML = bodyHtml + imagesHtml;
-  $("#mail-detail-content")
-    .querySelectorAll(".mail-image-thumb, .browser-hero-image")
-    .forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src)));
+  const mailImageBtns = $("#mail-detail-content").querySelectorAll(".mail-image-thumb, .browser-hero-image");
+  const mailGallery = Array.from(mailImageBtns).map((btn) => btn.dataset.src);
+  mailImageBtns.forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src, mailGallery)));
 
   if (embeds.some((e) => e.type === "instagram")) {
     loadInstagramEmbedScript();
@@ -871,10 +871,19 @@ $("#contact-copy").addEventListener("click", () => {
 // ---------------------------------------------------------
 const lightbox = $("#image-lightbox");
 const lightboxImg = $("#lightbox-img");
+let lightboxGallery = [];
+let lightboxIndex = 0;
 
-function openLightbox(src) {
+function openLightbox(src, gallery) {
+  lightboxGallery = gallery && gallery.length ? gallery : [src];
+  lightboxIndex = Math.max(0, lightboxGallery.indexOf(src));
   lightboxImg.src = src;
   lightbox.classList.add("open");
+}
+function showLightboxAt(index) {
+  if (!lightboxGallery.length) return;
+  lightboxIndex = (index + lightboxGallery.length) % lightboxGallery.length;
+  lightboxImg.src = lightboxGallery[lightboxIndex];
 }
 function closeLightbox() {
   lightbox.classList.remove("open");
@@ -885,7 +894,10 @@ lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
 });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+  if (!lightbox.classList.contains("open")) return;
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowRight") { e.preventDefault(); showLightboxAt(lightboxIndex + 1); }
+  else if (e.key === "ArrowLeft") { e.preventDefault(); showLightboxAt(lightboxIndex - 1); }
 });
 
 // ---------------------------------------------------------
@@ -984,7 +996,9 @@ function renderMemoryGrid(items, hint) {
     <div class="stamp-grid">${cards}</div>
     <p class="memory-hint">${escapeHtml(hint || "사진을 눌러 크게 보기")}</p>
   `;
-  grid.querySelectorAll(".stamp-card").forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src)));
+  const stampBtns = grid.querySelectorAll(".stamp-card");
+  const stampGallery = Array.from(stampBtns).map((btn) => btn.dataset.src);
+  stampBtns.forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src, stampGallery)));
 }
 
 loadContent().catch((err) => {
