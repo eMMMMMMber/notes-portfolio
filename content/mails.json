@@ -139,6 +139,103 @@
       "gallery": "browser"
     },
     {
+      "id": "p10",
+      "folder": "sent",
+      "unread": false,
+      "starred": true,
+      "sender": "선진",
+      "to": "이마트 토이킹덤",
+      "subject": "토이킹덤 할아버지의 인생실전(傳) SNS , 스톱모션",
+      "date": "2021",
+      "preview": "",
+      "images": [],
+      "body": "<span class=\"mail-label\">CLIENT</span>이마트 토이킹덤\n\n브랜드 산하의 세 가지 브랜드를 가족 계정처럼 운영하는 컨셉의 SNS 캠페인입니다\n\n<span class=\"mail-label\">IDEA</span>토이킹덤의 장난감으로 인형극을 구성해 시대에 맞지 않는 전래통화를 현대적으로 풀이\n\n<span class=\"mail-label\">ROLE</span><strong>전체 콘텐츠의 75%를 단독 기획 및 작성</strong>했습니다. \n제품 선정과 스토리보드, <strong>디자이너와의 메인 커뮤니케이션</strong>, 그리고 <strong>PM으로서 카피라이터 팀원을 멘토링</strong>했습니다.\n계정의 화자가 할아버지라는 점을 반영하여 멘션과 소비자와의 댓글 모두 할아버지 컨셉으로 인스타그램을 관리했습니다\n\n<span class=\"mail-label\">RESULT</span>⯌매달 평균 2K 팔로워 증가\n⯌X(구 트위터) 리트윗 16K / 좋아요 10K\n*광고 없이 자발적 바이럴 확산\n\n[[POSTS]]\n\n<span class=\"mail-label\">스톱모션</span>\n\nSNS와 세계관이 이어지는 영상 캠페인입니다.\n'장난감의 왕은 어린이'라는 메시지로 귀결시킨 장난감들의 왕좌 쟁탈전입니다\n\n<span class=\"mail-label\">ROLE</span><strong>기획 및 제작을 총괄한 스톱모션 캠페인</strong>입니다. \n기획, 스토리보드, 카피라이팅, 트리트먼트, PPM, 광고주 커뮤니케이션, 편집 피드백\n할아버지 성우 및 캐릭터별 성우 선정, 녹음실 커뮤니케이션 등\n<strong>영상 제작의 전 과정에 인볼브하여 영상팀과 함께 밀접하게 작업</strong>했습니다.\n제안한 아이디어가 거의 수정 없이 진행되었으며\n소규모 예산의 캠페인이었지만 모든 작업 구간에 투입 되어 <strong>디렉팅 능력과 리더십을 단련</strong>할 수 있었습니다\n\n[[EMBEDS]]",
+      "embeds": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=GyXvIWfZfXk"
+        }
+      ],
+      "labelColor": "#cc9f40",
+      "tightPosts": true,
+      "posts": [
+        {
+          "image": "uploads/p10-post1-1788625622000.jpg",
+          "handle": "toykingdom.official",
+          "caption": "新데렐라는... 이렇게... 빨리... 행복해졌단다...",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post2-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post3-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post4-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post5-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post0-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": "",
+          "mention": "toykingdom.official"
+        },
+        {
+          "image": "uploads/p10-post6-1788625622000.jpg",
+          "handle": "toykingdom.official",
+          "caption": "참말로...? 한번.써보자꾸나...",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post7-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post8-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post9-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post10-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": ""
+        },
+        {
+          "image": "uploads/p10-post11-1788625622000.jpg",
+          "handle": "",
+          "caption": "",
+          "url": "",
+          "mention": "toykingdom.official"
+        }
+      ]
+    },
+    {
       "id": "p18",
       "folder": "sent",
       "unread": false,
@@ -304,41 +401,6 @@
           "type": "youtube",
           "url": "https://www.youtube.com/watch?v=uhw1DSKWpb0"
         }
-      ]
-    },
-    {
-      "id": "p10",
-      "folder": "sent",
-      "unread": false,
-      "starred": true,
-      "sender": "선진",
-      "to": "이마트 토이킹덤",
-      "subject": "토이킹덤 할아버지의 인생실전(傳) SNS , 스톱모션",
-      "date": "2021",
-      "preview": "",
-      "images": [],
-      "body": "<span class=\"mail-label\">CLIENT</span>이마트 토이킹덤\n\n브랜드 산하의 세 가지 브랜드를 가족 계정처럼 운영하는 컨셉의 SNS 캠페인입니다\n\n<span class=\"mail-label\">IDEA</span>토이킹덤의 장난감으로 인형극을 구성해 시대에 맞지 않는 전래통화를 현대적으로 풀이\n\n<span class=\"mail-label\">ROLE</span><strong>전체 콘텐츠의 75%를 단독 기획 및 작성</strong>했습니다. \n제품 선정과 스토리보드, <strong>디자이너와의 메인 커뮤니케이션</strong>, 그리고 <strong>PM으로서 카피라이터 팀원을 멘토링</strong>했습니다.\n계정의 화자가 할아버지라는 점을 반영하여 멘션과 소비자와의 댓글 모두 할아버지 컨셉으로 인스타그램을 관리했습니다\n\n<span class=\"mail-label\">RESULT</span>⯌매달 평균 2K 팔로워 증가\n⯌X(구 트위터) 리트윗 16K / 좋아요 10K\n*광고 없이 자발적 바이럴 확산\n\n[[POSTS]]\n\n<span class=\"mail-label\">스톱모션</span>\n\nSNS와 세계관이 이어지는 영상 캠페인입니다.\n'장난감의 왕은 어린이'라는 메시지로 귀결시킨 장난감들의 왕좌 쟁탈전입니다\n\n<span class=\"mail-label\">ROLE</span><strong>기획 및 제작을 총괄한 스톱모션 캠페인</strong>입니다. \n기획, 스토리보드, 카피라이팅, 트리트먼트, PPM, 광고주 커뮤니케이션, 편집 피드백\n할아버지 성우 및 캐릭터별 성우 선정, 녹음실 커뮤니케이션 등\n<strong>영상 제작의 전 과정에 인볼브하여 영상팀과 함께 밀접하게 작업</strong>했습니다.\n제안한 아이디어가 거의 수정 없이 진행되었으며\n소규모 예산의 캠페인이었지만 모든 작업 구간에 투입 되어 <strong>디렉팅 능력과 리더십을 단련</strong>할 수 있었습니다\n\n[[EMBEDS]]",
-      "embeds": [
-        {
-          "type": "youtube",
-          "url": "https://www.youtube.com/watch?v=GyXvIWfZfXk"
-        }
-      ],
-      "labelColor": "#cc9f40",
-      "tightPosts": true,
-      "posts": [
-        { "image": "uploads/p10-post1-1788625622000.jpg", "handle": "toykingdom.official", "caption": "新데렐라는... 이렇게... 빨리... 행복해졌단다...", "url": "" },
-        { "image": "uploads/p10-post2-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post3-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post4-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post5-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post0-1788625622000.jpg", "handle": "", "caption": "", "url": "", "mention": "toykingdom.official" },
-        { "image": "uploads/p10-post6-1788625622000.jpg", "handle": "toykingdom.official", "caption": "참말로...? 한번.써보자꾸나...", "url": "" },
-        { "image": "uploads/p10-post7-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post8-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post9-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post10-1788625622000.jpg", "handle": "", "caption": "", "url": "" },
-        { "image": "uploads/p10-post11-1788625622000.jpg", "handle": "", "caption": "", "url": "", "mention": "toykingdom.official" }
       ]
     },
     {

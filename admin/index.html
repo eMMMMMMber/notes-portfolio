@@ -50,10 +50,15 @@
   .tabs button.active{ border-bottom-color:var(--accent); color:var(--accent); }
   .workspace{ display:flex; height:calc(100vh - 96px); }
   .sidebar{ width:260px; flex:none; border-right:1px solid var(--line); overflow-y:auto; }
-  .sidebar-item{ padding:.6rem 1rem; border-bottom:1px solid #1a1a1a; cursor:pointer; }
+  .sidebar-item{ display:flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-bottom:1px solid #1a1a1a; }
   .sidebar-item:hover{ background:#111; }
   .sidebar-item.active{ background:#141414; color:var(--accent); }
   .sidebar-item .sub{ display:block; font-size:.7rem; color:var(--muted); }
+  .sidebar-item-main{ flex:1; min-width:0; cursor:pointer; }
+  .sidebar-item-order{ display:flex; flex-direction:column; gap:2px; flex:none; }
+  .order-btn{ padding:0 .3rem; font-size:.6rem; line-height:1.5; border:1px solid var(--line); background:#000; color:var(--muted); cursor:pointer; }
+  .order-btn:hover:not(:disabled){ background:#1a1a1a; color:var(--text); }
+  .order-btn:disabled{ opacity:.25; cursor:default; }
   .sidebar-add{ padding:.7rem 1rem; border-bottom:1px solid var(--line); }
   .editor{ flex:1; overflow-y:auto; padding:1.2rem 1.6rem 4rem; }
   .editor-empty{ color:var(--muted); padding:2rem; }
@@ -555,13 +560,45 @@ $("#memory-add-btn").addEventListener("click", () => {
 function renderMailList(){
   const list = $("#mail-list");
   list.innerHTML = "";
-  mailsData.items.forEach((m) => {
+  mailsData.items.forEach((m, idx) => {
     const div = document.createElement("div");
     div.className = "sidebar-item" + (m.id === activeMailId ? " active" : "");
-    div.innerHTML = `${m.subject || "(제목 없음)"}<span class="sub">${m.id} · ${m.to || m.sender}</span>`;
-    div.addEventListener("click", () => { activeMailId = m.id; renderMailList(); renderMailEditor(); });
+    div.innerHTML = `
+      <div class="sidebar-item-main">${m.subject || "(제목 없음)"}<span class="sub">${m.id} · ${m.to || m.sender}</span></div>
+      <div class="sidebar-item-order">
+        <button type="button" class="order-btn" data-dir="up" ${idx === 0 ? "disabled" : ""} title="위로">▲</button>
+        <button type="button" class="order-btn" data-dir="down" ${idx === mailsData.items.length - 1 ? "disabled" : ""} title="아래로">▼</button>
+      </div>
+    `;
+    div.querySelector(".sidebar-item-main").addEventListener("click", () => { activeMailId = m.id; renderMailList(); renderMailEditor(); });
+    div.querySelectorAll(".order-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        moveMail(m.id, btn.dataset.dir);
+      });
+    });
     list.appendChild(div);
   });
+}
+
+async function moveMail(id, dir){
+  toast("순서 변경 중...");
+  try {
+    const fresh = await ghGetFile("content/mails.json");
+    const freshData = JSON.parse(fresh.content);
+    const idx = freshData.items.findIndex((x) => x.id === id);
+    const swapIdx = dir === "up" ? idx - 1 : idx + 1;
+    if (idx < 0 || swapIdx < 0 || swapIdx >= freshData.items.length) return;
+    [freshData.items[idx], freshData.items[swapIdx]] = [freshData.items[swapIdx], freshData.items[idx]];
+    const content = JSON.stringify(freshData, null, 2);
+    const result = await ghPutFile("content/mails.json", content, fresh.sha, `admin: 메일 순서 변경 (${id})`);
+    mailsData = freshData;
+    mailsSha = result.content.sha;
+    renderMailList();
+    toast("순서 변경 완료!");
+  } catch (err) {
+    toast(err.message);
+  }
 }
 
 function mailLabelToolbar(textareaId){
