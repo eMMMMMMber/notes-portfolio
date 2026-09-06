@@ -180,6 +180,7 @@ function setupAppAndIcon(icon, win) {
 
 const notesApp = setupAppAndIcon($("#notes-icon"), $("#notes-window"));
 const mailApp = setupAppAndIcon($("#mail-icon"), $("#mail-window"));
+mailApp.win.querySelectorAll(".tl-close, .tl-min").forEach((btn) => btn.addEventListener("click", stopMailMedia));
 const meApp = setupAppAndIcon($("#me-icon"), $("#me-window"));
 const memoryApp = setupAppAndIcon($("#memory-icon"), $("#memory-window"));
 
@@ -729,7 +730,16 @@ function postCardHtml(post) {
   </div>`;
 }
 
+// 메일 상세를 떠날 때(목록으로, 다른 메일로, 창 닫기) 재생 중인 유튜브/영상을 정지
+function stopMailMedia() {
+  const content = $("#mail-detail-content");
+  if (!content) return;
+  content.querySelectorAll("iframe").forEach((f) => { f.src = ""; });
+  content.querySelectorAll("video").forEach((v) => { v.pause(); });
+}
+
 function openMail(id) {
+  stopMailMedia();
   const mail = mails.find((m) => m.id === id);
   if (!mail) return;
   activeMailId = id;
@@ -824,6 +834,7 @@ function openMail(id) {
 }
 
 $("#mail-back-btn").addEventListener("click", () => {
+  stopMailMedia();
   mailMainEl.classList.remove("detail-open");
 });
 
