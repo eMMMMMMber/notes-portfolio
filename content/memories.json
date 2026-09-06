@@ -1,11 +1,35 @@
 {
-  "hint": "내일 한 장 더 추가됩니다",
+  "hint": "기억이 추가 되고 있습니다.",
   "items": [
-    { "image": "uploads/memory-1788359397-1.jpg", "caption": "", "date": "" },
-    { "image": "uploads/memory-1788359397-2.jpg", "caption": "", "date": "" },
-    { "image": "uploads/memory-1788359397-3.jpg", "caption": "", "date": "" },
-    { "image": "uploads/memory-1788359397-4.jpg", "caption": "", "date": "" },
-    { "image": "uploads/memory-1788359397-5.jpg", "caption": "", "date": "" },
-    { "image": "uploads/memory-1788359397-6.jpg", "caption": "", "date": "" }
+    {
+      "image": "uploads/memory-1788359397-1.jpg",
+      "caption": "",
+      "date": ""
+    },
+    {
+      "image": "uploads/memory-1788359397-2.jpg",
+      "caption": "",
+      "date": ""
+    },
+    {
+      "image": "uploads/memory-1788359397-3.jpg",
+      "caption": "",
+      "date": ""
+    },
+    {
+      "image": "uploads/memory-1788359397-4.jpg",
+      "caption": "",
+      "date": ""
+    },
+    {
+      "image": "uploads/memory-1788359397-5.jpg",
+      "caption": "",
+      "date": ""
+    },
+    {
+      "image": "uploads/memory-1788359397-6.jpg",
+      "caption": "",
+      "date": ""
+    }
   ]
 }
