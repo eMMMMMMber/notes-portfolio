@@ -784,11 +784,15 @@ function openMail(id) {
 
   let bodyHtml;
   if (mail.body.includes("[[EMBEDS]]")) {
+    let embedMarkerIndex = 0;
     bodyHtml = mail.body
       .split(/(\[\[POSTS\]\]|\[\[EMBEDS\]\])/)
       .map((part) => {
         if (part === "[[POSTS]]") return postsHtml;
-        if (part === "[[EMBEDS]]") return embedsHtml;
+        if (part === "[[EMBEDS]]") {
+          const e = embeds[embedMarkerIndex++];
+          return e ? `<div class="mail-embeds">${embedHtml(e)}</div>` : "";
+        }
         return paragraphsToHtml(part);
       })
       .join("");
