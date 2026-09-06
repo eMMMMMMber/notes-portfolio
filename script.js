@@ -923,7 +923,7 @@ async function loadContent() {
   renderMailList();
 
   renderProfile(meData);
-  renderMemoryGrid(memoriesData.items || []);
+  renderMemoryGrid(memoriesData.items || [], memoriesData.hint);
 
   initMusicWidget(siteData.musicUrl);
 }
@@ -965,7 +965,7 @@ function renderProfile(me) {
     });
 }
 
-function renderMemoryGrid(items) {
+function renderMemoryGrid(items, hint) {
   const grid = $("#memory-grid");
   if (!items.length) {
     grid.innerHTML = `<p class="memory-empty">아직 추가된 기억이 없습니다.</p>`;
@@ -983,7 +983,7 @@ function renderMemoryGrid(items) {
     .join("");
   grid.innerHTML = `
     <div class="stamp-grid">${cards}</div>
-    <p class="memory-hint">내일 한 장 더 추가됩니다</p>
+    <p class="memory-hint">${escapeHtml(hint || "사진을 눌러 크게 보기")}</p>
   `;
   grid.querySelectorAll(".stamp-card").forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src)));
 }

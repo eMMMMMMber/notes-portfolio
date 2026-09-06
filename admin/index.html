@@ -164,6 +164,11 @@
   <main id="memory-tab">
     <div class="workspace">
       <div class="sidebar">
+        <div class="sidebar-add" style="display:flex; flex-direction:column; gap:.4rem;">
+          <label style="margin:0">소개글 (사진 아래 안내 문구)</label>
+          <input id="memory-hint-input" placeholder="예: 사진을 눌러 크게 보기" />
+          <button id="memory-hint-save" style="width:100%">소개글 저장</button>
+        </div>
         <div class="sidebar-add"><button id="memory-add-btn" style="width:100%">+ 새 사진</button></div>
         <div id="memory-list"></div>
       </div>
@@ -410,6 +415,27 @@ $("#me-save").addEventListener("click", saveMe);
 // ===========================================================
 // memory (갤러리)
 // ===========================================================
+function renderMemoryHint(){
+  $("#memory-hint-input").value = memoriesData.hint || "";
+}
+
+async function saveMemoryHint(){
+  const value = $("#memory-hint-input").value;
+  toast("저장 중...");
+  try {
+    const fresh = await ghGetFile("content/memories.json");
+    const freshData = JSON.parse(fresh.content);
+    freshData.hint = value;
+    const content = JSON.stringify(freshData, null, 2);
+    const result = await ghPutFile("content/memories.json", content, fresh.sha, "admin: memory 소개글 수정");
+    memoriesData = freshData;
+    memoriesSha = result.content.sha;
+    toast("저장 완료! 1~2분 후 사이트에 반영돼요.");
+  } catch (err) {
+    toast(err.message);
+  }
+}
+
 function renderMemoryList(){
   const list = $("#memory-list");
   list.innerHTML = "";
@@ -1148,6 +1174,8 @@ async function boot(){
     renderSiteEditor();
     $("#s-save").addEventListener("click", saveSite);
     renderMeEditor();
+    renderMemoryHint();
+    $("#memory-hint-save").addEventListener("click", saveMemoryHint);
     renderMemoryList();
     renderMemoryEditor();
   } catch (err) {
