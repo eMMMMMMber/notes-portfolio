@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>선진 — admin</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ccircle cx='17' cy='16' r='4' fill='%23fff'/%3E%3C/svg%3E" />
 <style>
   :root{
     --bg:#000; --panel:#0a0a0a; --line:#333; --text:#f2f2f2; --muted:#999; --accent:#4da6ff;
@@ -277,6 +279,41 @@ function fileToBase64(file){
   });
 }
 
+// 업로드 용량 절감: 긴 변 1600px 초과 시 축소 + 재압축.
+// 이미 작은 파일이나 GIF(애니메이션 깨짐 방지)는 원본 그대로 둔다.
+function resizeImageFile(file, maxDim = 1600, quality = 0.85){
+  if (!file.type.startsWith("image/") || file.type === "image/gif") {
+    return fileToBase64(file);
+  }
+  if (file.size < 350 * 1024) {
+    return fileToBase64(file);
+  }
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const { width, height } = img;
+      if (width <= maxDim && height <= maxDim) {
+        fileToBase64(file).then(resolve, reject);
+        return;
+      }
+      const scale = maxDim / Math.max(width, height);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(width * scale);
+      canvas.height = Math.round(height * scale);
+      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+      const outType = file.type === "image/png" ? "image/png" : "image/jpeg";
+      resolve(canvas.toDataURL(outType, quality).split(",")[1]);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      fileToBase64(file).then(resolve, reject);
+    };
+    img.src = url;
+  });
+}
+
 // ===========================================================
 // 상태
 // ===========================================================
@@ -402,7 +439,7 @@ $("#me-photo-upload").addEventListener("change", async (e) => {
   if (!file) return;
   toast("사진 업로드 중...");
   try {
-    const b64 = await fileToBase64(file);
+    const b64 = await resizeImageFile(file);
     const safeName = `me-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-]/g, "_")}`;
     const path = `uploads/${safeName}`;
     await ghPutBinaryFile(path, b64, `프로필 사진 업로드: ${safeName}`);
@@ -490,7 +527,7 @@ function renderMemoryEditor(){
     if (!file) return;
     toast("사진 업로드 중...");
     try {
-      const b64 = await fileToBase64(file);
+      const b64 = await resizeImageFile(file);
       const safeName = `memory-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-]/g, "_")}`;
       const path = `uploads/${safeName}`;
       await ghPutBinaryFile(path, b64, `메모리 사진 업로드: ${safeName}`);
@@ -728,7 +765,7 @@ function renderMailEditor(){
     if (!file) return;
     toast("이미지 업로드 중...");
     try {
-      const b64 = await fileToBase64(file);
+      const b64 = await resizeImageFile(file);
       const safeName = `${m.id}-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-]/g, "_")}`;
       const path = `uploads/${safeName}`;
       await ghPutBinaryFile(path, b64, `이미지 업로드: ${safeName}`);
@@ -826,7 +863,7 @@ function renderPostList(m){
     if (!file) return;
     toast("이미지 업로드 중...");
     try {
-      const b64 = await fileToBase64(file);
+      const b64 = await resizeImageFile(file);
       const safeName = `${m.id}-post${idx}-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-]/g, "_")}`;
       const path = `uploads/${safeName}`;
       await ghPutBinaryFile(path, b64, `게시물 이미지 업로드: ${safeName}`);
@@ -1027,7 +1064,7 @@ function renderNoteEditor(){
     if (!file) return;
     toast("이미지 업로드 중...");
     try {
-      const b64 = await fileToBase64(file);
+      const b64 = await resizeImageFile(file);
       const safeName = `${n.id}-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-]/g, "_")}`;
       const path = `uploads/${safeName}`;
       await ghPutBinaryFile(path, b64, `이미지 업로드: ${safeName}`);

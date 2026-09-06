@@ -989,7 +989,17 @@ function renderMemoryGrid(items, hint) {
   grid.querySelectorAll(".stamp-card").forEach((btn) => btn.addEventListener("click", () => openLightbox(btn.dataset.src)));
 }
 
-loadContent();
+loadContent().catch((err) => {
+  console.error("콘텐츠 로드 실패:", err);
+  const el = document.createElement("div");
+  el.className = "load-error-banner";
+  el.innerHTML = `
+    <p>콘텐츠를 불러오지 못했습니다. 네트워크 상태를 확인한 뒤 다시 시도해주세요.</p>
+    <button type="button">새로고침</button>
+  `;
+  el.querySelector("button").addEventListener("click", () => location.reload());
+  document.body.appendChild(el);
+});
 
 /* ================= 배경음악 위젯 ================= */
 let ytPlayer = null;

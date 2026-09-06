@@ -833,3 +833,16 @@ html,body{
 }
 .lightbox-close:hover{ background:rgba(255,255,255,.15); }
 .lightbox-close svg{ width:16px; height:16px; }
+
+/* ================= 콘텐츠 로드 실패 안내 ================= */
+.load-error-banner{
+  position:fixed; left:50%; bottom:2rem; transform:translateX(-50%);
+  background:#000; color:#fff; border:1px solid #fff;
+  padding:.9rem 1.2rem; display:flex; align-items:center; gap:1rem;
+  font-size:.85rem; z-index:9999; max-width:90vw;
+}
+.load-error-banner button{
+  flex:none; background:#fff; color:#000; border:none;
+  padding:.4rem .8rem; font-size:.8rem; cursor:pointer;
+}
+.load-error-banner button:hover{ background:#ddd; }
