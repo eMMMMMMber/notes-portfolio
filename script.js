@@ -685,6 +685,9 @@ function embedHtml(embed) {
     if (!id) return "";
     return `<div class="video-embed-wrap"><iframe src="https://www.youtube.com/embed/${id}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
   }
+  if (embed.type === "video") {
+    return `<div class="video-embed-wrap"><video src="${embed.url}" controls playsinline preload="metadata"></video></div>`;
+  }
   if (embed.type === "instagram") {
     return `<blockquote class="instagram-media" data-instgrm-permalink="${embed.url}" data-instgrm-captioned data-instgrm-version="14"></blockquote>`;
   }
