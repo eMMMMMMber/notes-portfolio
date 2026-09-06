@@ -673,8 +673,21 @@ html,body{
   display:flex; flex-direction:column;
 }
 .mail-post-image{
+  position:relative;
   width:100%; aspect-ratio:1/1;
   background-size:cover; background-position:center; background-color:var(--bg-row-hover);
+}
+.mail-post-mention{
+  position:absolute; left:.7rem; bottom:.7rem;
+  display:inline-flex; align-items:center; gap:.3rem;
+  background:rgba(0,0,0,.6); color:#fff;
+  font-size:.72rem; line-height:1; letter-spacing:.01em;
+  padding:.4rem .6rem; border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+}
+.mail-post-mention::before{
+  content:""; width:.4rem; height:.4rem; border-radius:50%;
+  background:#fff; flex:none;
 }
 .mail-post-video{
   width:100%; aspect-ratio:9/16;

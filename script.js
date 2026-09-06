@@ -711,9 +711,12 @@ function postCardHtml(post) {
   const link = post.url
     ? `<a class="mail-post-link" href="${post.url}" target="_blank" rel="noopener">원본 게시물 보기 →</a>`
     : "";
+  const mentionHtml = post.mention
+    ? `<span class="mail-post-mention">@${escapeHtml(post.mention)}</span>`
+    : "";
   const mediaHtml = post.video
     ? `<video class="mail-post-video" src="${post.video}" ${post.image ? `poster="${post.image}"` : ""} controls playsinline preload="metadata"></video>`
-    : `<div class="mail-post-image" style="background-image:url('${post.image}')"></div>`;
+    : `<div class="mail-post-image" style="background-image:url('${post.image}')">${mentionHtml}</div>`;
   const hasBody = post.handle || post.caption || post.url;
   const bodyHtml = hasBody
     ? `<div class="mail-post-body">
