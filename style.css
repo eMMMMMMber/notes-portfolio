@@ -222,10 +222,9 @@ html,body{
 #notes-list li:last-child .note-row{ border-bottom:none; }
 .note-row:hover{ background:var(--bg-row-hover); margin-left:0; padding-left:2.2rem; }
 .note-row.active{ background:var(--bg-row-active); color:#fff; margin-left:0; padding-left:2.2rem; }
-.note-row.active .row-date, .note-row.active .row-preview{ color:#cfcfcf; }
+.note-row.active .row-preview{ color:#cfcfcf; }
 .note-row .row-top{ display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; }
 .note-row .row-title{ font-size:.96rem; font-weight:590; letter-spacing:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.note-row .row-date{ font-size:.79rem; color:var(--text-secondary); flex:none; font-weight:400; }
 .note-row .row-preview{ font-size:.85rem; color:var(--text-secondary); font-weight:400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
 /* ================= 메모 상세 ================= */
@@ -240,8 +239,7 @@ html,body{
 .icon-share{ width:20px; height:20px; color:var(--accent); }
 
 .detail-body{ padding:0 1.6rem 3rem; max-width:640px; width:100%; margin:0 auto; }
-.detail-date{ text-align:center; color:var(--text-secondary); font-size:.8rem; margin:.1rem 0 .9rem; font-weight:400; }
-#detail-title{ font-size:1.5rem; font-weight:700; margin:0 0 .5rem; letter-spacing:0; user-select:text; }
+#detail-title{ font-size:1.5rem; font-weight:700; margin:1rem 0 1.2rem; letter-spacing:0; user-select:text; }
 #detail-content{ font-size:1rem; line-height:1.65; letter-spacing:0; color:var(--text-primary); user-select:text; font-weight:400; }
 #detail-content p{ margin:0 0 1.8em; white-space:pre-wrap; }
 #detail-content .placeholder{ color:var(--text-secondary); font-style:italic; }
@@ -724,7 +722,7 @@ html,body{
 /* 메모 첨부 사진: 크롭/여백 없이 원본 비율 그대로 */
 .note-images{
   display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
-  gap:.6rem; margin-top:1.6rem;
+  gap:.6rem; margin-top:2.8rem;
 }
 .note-photo{
   display:block; width:100%; padding:0; margin:0; line-height:0;

@@ -405,7 +405,6 @@ function renderList() {
         <div class="note-row ${n.id === activeNoteId ? "active" : ""}" data-id="${n.id}">
           <div class="row-top">
             <span class="row-title">${escapeHtml(n.title)}</span>
-            <span class="row-date">${escapeHtml(n.date)}</span>
           </div>
           <span class="row-preview">${escapeHtml(formatPreview(n))}</span>
         </div>
@@ -485,7 +484,6 @@ function openNote(id) {
     row.classList.toggle("active", row.dataset.id === id);
   });
 
-  $("#detail-date").textContent = note.date;
   $("#detail-title").textContent = note.hideTitle ? "" : note.title;
   $("#detail-title").style.display = note.hideTitle ? "none" : "";
 
