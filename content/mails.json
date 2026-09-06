@@ -161,8 +161,8 @@
       "posts": [
         {
           "image": "uploads/p10-post1-1788625622000.jpg",
-          "handle": "toykingdom.official",
-          "caption": "차가운 바다보다...인어가...더 쿨했단다...",
+          "handle": "",
+          "caption": "",
           "url": ""
         },
         {
@@ -191,15 +191,14 @@
         },
         {
           "image": "uploads/p10-post0-1788625622000.jpg",
-          "handle": "",
+          "handle": "toykingdom.official",
           "caption": "",
-          "url": "",
-          "mention": "toykingdom.official"
+          "url": ""
         },
         {
           "image": "uploads/p10-post6-1788625622000.jpg",
-          "handle": "toykingdom.official",
-          "caption": "참말로...? 한번.써보자꾸나...",
+          "handle": "",
+          "caption": "",
           "url": ""
         },
         {
@@ -228,10 +227,9 @@
         },
         {
           "image": "uploads/p10-post11-1788625622000.jpg",
-          "handle": "",
+          "handle": "toykingdom.official",
           "caption": "",
-          "url": "",
-          "mention": "toykingdom.official"
+          "url": ""
         }
       ]
     },
