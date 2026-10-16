@@ -1035,8 +1035,40 @@ loadContent().catch((err) => {
 let ytPlayer = null;
 let ytPendingPlay = false;
 
+function spotifyUriFromUrl(url) {
+  const m = url.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(playlist|album|track|episode|show|artist)\/([A-Za-z0-9]+)/);
+  return m ? `spotify:${m[1]}:${m[2]}` : null;
+}
+
+function initSpotifyWidget(icon, uri) {
+  let controller = null;
+  window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const host = document.createElement("div");
+    document.getElementById("yt-player-container").appendChild(host);
+    IFrameAPI.createController(host, { uri, width: 300, height: 80 }, (c) => {
+      controller = c;
+      c.addListener("playback_update", (e) => {
+        icon.classList.toggle("playing", !e.data.isPaused);
+      });
+    });
+  };
+  const tag = document.createElement("script");
+  tag.src = "https://open.spotify.com/embed/iframe-api/v1";
+  tag.async = true;
+  document.head.appendChild(tag);
+
+  icon.addEventListener("click", () => {
+    if (controller) controller.togglePlay();
+  });
+}
+
 function initMusicWidget(musicUrl) {
   const icon = document.getElementById("music-icon");
+  const spotifyUri = musicUrl && spotifyUriFromUrl(musicUrl);
+  if (icon && spotifyUri) {
+    initSpotifyWidget(icon, spotifyUri);
+    return;
+  }
   const videoId = musicUrl && youtubeIdFromUrl(musicUrl);
   const playlistId = musicUrl && !videoId && youtubePlaylistIdFromUrl(musicUrl);
   if (!icon || (!videoId && !playlistId)) return;
